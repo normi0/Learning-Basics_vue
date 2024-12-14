@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Learning</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  </head>
+  <body>
+    <style>
+      .box {
+        padding: 100px 0;
+        width: 400px;
+        text-align: center;
+        background-color: lightgray;
+        margin: 20px;
+        display: inline-block;
+        border-radius: 15px;
+      }
+      li img {
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+        border-radius: 8px;
+        box-shadow: 2px 4px 8px lightgray;
+      }
+    </style>
+    <div id="app">
+      <!-- <h3> here vue controll </h3> -->
+      <div v-if="showbooks">
+        <!-- <p>{{title}} -{{author}} -{{age}}</p> -->
+        <!-- <a :href="url">best shit ever</a> -->//dinamicaly have a url
+        <ul>
+          <li v-for="book in books">
+            <img :src="book.img" :alt="book.title" />
+            <h3>{{book.title}}</h3>
+            <p>{{book.author}}</p>
+          </li>
+        </ul>
+      </div>
+      <button @click="ToogleShowBooks">
+        <span v-if="showbooks"> HideBooks </span>
+        <span v-else> showbooks </span>
+      </button>
+      <button v-on:click="age++">increase the age</button>
+      <button v-on:click="age--">decrese the age</button>
+      <div
+        style="
+          margin-top: 20px;
+          background-color: aqua;
+          height: 20vh;
+          width: 80vw;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border-radius: 15px;
+          color: white;
+          font-size: 20px;
+          font-family: 'Courier New', Courier, monospace;
+          box-shadow: 1px 5px 2px gray;
+        "
+        @click="changeTitle('oathbrnger')"
+      >
+        change book title
+      </div>
+      <div class="box" @mouseover="handleEvent">mouseover (enter)</div>
+      <div class="box" @mouseleave="handleEvent">mouseleave</div>
+      <div class="box" @dblclick="handleEvent">double click</div>
+      <div class="box" @mousemove="handleMouseMove">position -{{x}}-{{y}}</div>
+    </div>
+
+    <h3>here he dont</h3>
+    <h2>i am the template now</h2>
+    <br />
+    <script src="app.js"></script>
+  </body>
+  <style>
+    button {
+      margin-right: 20px;
+      background-color: orange;
+      border-radius: 15px;
+      height: 30px;
+      border-color: lightcoral;
+      color: white;
+    }
+  </style>
+</html>
