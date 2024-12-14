@@ -51,6 +51,9 @@ const app = Vue.createApp({
     ToogleShowBooks() {
       this.showbooks = !this.showbooks;
     },
+    ToogleFavBook(book) {
+      book.isFav = !book.isFav;
+    },
     handleEvent(e) {
       // Renamed to match template
       console.log(e);
@@ -58,6 +61,11 @@ const app = Vue.createApp({
     handleMouseMove(e) {
       this.x = e.offsetX;
       this.y = e.offsetY;
+    },
+  },
+  computed: {
+    filtredBooks() {
+      return this.books.filter((book) => book.isFav);
     },
   },
 });

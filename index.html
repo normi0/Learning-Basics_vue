@@ -7,7 +7,35 @@
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
   </head>
   <body>
+    <head>
+      <h3>Hi vue ;)</h3>
+    </head>
     <style>
+      body {
+        background-color: rgb(237, 236, 236);
+        max-width: 960px;
+        margin: 20px auto;
+      }
+      p,
+      h3,
+      ul {
+        margin: 0;
+        padding: 0;
+      }
+      li {
+        list-style-type: none;
+        background: white;
+        margin: 20px auto;
+        padding: 10px 20px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        box-shadow: 1px 4px 3px lightgray;
+      }
+      li.fav {
+        background-color: lightblue;
+      }
       .box {
         padding: 100px 0;
         width: 400px;
@@ -29,9 +57,39 @@
       <!-- <h3> here vue controll </h3> -->
       <div v-if="showbooks">
         <!-- <p>{{title}} -{{author}} -{{age}}</p> -->
-        <!-- <a :href="url">best shit ever</a> -->//dinamicaly have a url
+        <!-- <a :href="url">best shit ever</a> -->
+        <!-- //dinamicaly have a url -->
         <ul>
-          <li v-for="book in books">
+          <li
+            v-for="book in filtredBooks"
+            :class="{fav: book.isFav}"
+            @click="ToogleFavBook(book)"
+          >
+            <img :src="book.img" :alt="book.title" />
+            <h3>{{book.title}}</h3>
+            <p>{{book.author}}</p>
+          </li>
+        </ul>
+        <!-- <div
+          style="
+            height: 20vh;
+            width: 100vw;
+            margin-top: 20px;
+            padding: auto;
+            background-color: black;
+            color: white;
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: center;
+          "
+        >
+          <h3 style="margin-top: 20px">all the book section</h3>
+        </div> -->
+        <ul>
+          <li
+            v-for="book in books"
+            :class="{fav: book.isFav}"
+            @click="ToogleFavBook(book)"
+          >
             <img :src="book.img" :alt="book.title" />
             <h3>{{book.title}}</h3>
             <p>{{book.author}}</p>
@@ -47,7 +105,7 @@
       <div
         style="
           margin-top: 20px;
-          background-color: aqua;
+          background-color: lightblue;
           height: 20vh;
           width: 80vw;
           display: flex;
